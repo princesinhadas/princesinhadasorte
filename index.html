@@ -12,19 +12,19 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.bancaaguiaoficial.com. https://www.bancaaguiaoficial.com. https://api.whatsapp.com https://tigerclub.com.br; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src https://app.aguiaoficial.com/pr/2FE1WPn7; connect-src 'self' https://api.whatsapp.com https://www.googletagmanager.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.bancaaguiaoficial.com https://api.whatsapp.com https://tigerclub.com.br; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src https://app.aguiaoficial.com/pr/2FE1WPn7; connect-src 'self' https://api.whatsapp.com https://www.googletagmanager.com;">
     <title>ÁGUIA OFICIAL - Cadastros novos ganham 30% de bônus</title>
     <meta name="description" content="Águia Oficial - Ganhe 30% de bônus em novos cadastros! Aposte em bancas como PT Rio, Look GO e mais com nosso aplicativo online.">
     <meta name="keywords" content="águia oficial, aplicativo online, banca online">
     <meta property="og:title" content="Águia Oficial - Cadastros novos ganham 30% de bônus">
     <meta property="og:description" content="Jogue na Águia Oficial e aproveite bônus de até 30% em novos cadastros. Aposte em bancas online como PT Rio e Nacional!">
-    <meta property="og:image" content="https://www.bancaaguiaoficial.com//logo.webp">
+    <meta property="og:image" content="https://www.bancaaguiaoficial.com/logo.webp">
     <meta property="og:url" content="https://www.bancaaguiaoficial.com/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Águia Oficial - 30% de Bônus para Novos Cadastros">
     <meta name="twitter:description" content="Aposte com segurança e ganhe bônus na Águia Oficial. Cadastre-se agora!">
-    <meta name="twitter:image" content="https://www.bancaaguiaoficial.com//logo.webp">
+    <meta name="twitter:image" content="https://www.bancaaguiaoficial.com/logo.webp">
     <link rel="canonical" href="https://www.bancaaguiaoficial.com/">
     <script type="application/ld+json">
     </script>
@@ -460,7 +460,7 @@
                         <p>No Águia Oficial, protegemos seus dados pessoais com o mais alto padrão de segurança. Coletamos apenas informações necessárias para oferecer nossos serviços. Esses dados não são compartilhados com terceiros, exceto quando exigido por lei ou com seu consentimento explícito. Usamos cookies para melhorar a experiência do usuário, mas você pode desativá-los nas configurações do navegador.</p>
                         <p><strong>Termos de Uso</strong></p>
                         <p>Ao usar o Águia Oficial, você concorda em cumprir nossas regras. Nosso serviço é destinado a maiores de 18 anos, e o uso indevido, como tentativa de fraude, resultará em suspensão da conta. Os bônus são creditados conforme as regras promocionais e não podem ser transferidos. Nos reservamos o direito de atualizar estes termos a qualquer momento, com notificação prévia aos usuários.</p>
-                        <p>Para dúvidas, contate nosso suporte no WhatsApp: <a href="https://api.whatsapp.com/send?phone=+5583982024096preciso%20de%20ajuda" rel="noopener noreferrer">+55 83 98202-4096</a>.</p>
+                        <p>Para dúvidas, contate nosso suporte no WhatsApp: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">+55 83 98202-4096</a>.</p>
                     </div>
                 </div>
             </div>
@@ -633,7 +633,7 @@
             });
 
             function showSection(id) {
-                console.log(showSection: id=${id});
+                console.log(`showSection: id=${id}`);
                 try {
                     const sections = {
                         jogar: document.getElementById('jogar'),
@@ -648,10 +648,12 @@
 
                     Object.keys(sections).forEach(key => {
                         sections[key].style.display = key === id ? 'block' : 'none';
+                        if (key === 'palpites') {
+                            palpitesInner.classList.toggle('visible', id === 'palpites');
+                        } else if (key === 'sobre') {
+                            sections.sobre.classList.toggle('visible', id === 'sobre');
+                        }
                     });
-
-                    palpitesInner.classList.toggle('visible', id === 'palpites');
-                    sections.sobre.classList.toggle('visible', id === 'sobre');
 
                     if (id === 'palpites') {
                         const animalSelect = document.getElementById('animalSelect');
@@ -667,8 +669,8 @@
                         }
                     }
                 } catch (e) {
-                    console.error(Erro na função showSection: ${e.message});
-                    gtag('event', 'exception', { description: showSection: ${e.message}, fatal: true });
+                    console.error(`Erro na função showSection: ${e.message}`);
+                    gtag('event', 'exception', { description: `showSection: ${e.message}`, fatal: true });
                     document.body.innerHTML = '<p class="error">Erro ao carregar a seção. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
                 }
             }
@@ -677,8 +679,8 @@
                 try {
                     return Math.floor(Math.random() * 10000).toString().padStart(4, '0');
                 } catch (e) {
-                    console.error(Erro na função generateMilhar: ${e.message});
-                    gtag('event', 'exception', { description: generateMilhar: ${e.message}, fatal: false });
+                    console.error(`Erro na função generateMilhar: ${e.message}`);
+                    gtag('event', 'exception', { description: `generateMilhar: ${e.message}`, fatal: false });
                     return '0000';
                 }
             }
@@ -688,27 +690,27 @@
                     const tens = milhar.slice(-2);
                     return animals.find(animal => animal.tens.includes(tens)) || animals[0];
                 } catch (e) {
-                    console.error(Erro na função getAnimalByMilhar: ${e.message});
-                    gtag('event', 'exception', { description: getAnimalByMilhar: ${e.message}, fatal: false });
+                    console.error(`Erro na função getAnimalByMilhar: ${e.message}`);
+                    gtag('event', 'exception', { description: `getAnimalByMilhar: ${e.message}`, fatal: false });
                     return animals[0];
                 }
             }
 
             function getNextDrawTime(banca, now) {
-                console.log(getNextDrawTime: banca=${banca}, now=${now});
+                console.log(`getNextDrawTime: banca=${banca}, now=${now}`);
                 try {
                     if (!bancas[banca]) {
-                        throw new Error(Banca inválida: ${banca});
+                        throw new Error(`Banca inválida: ${banca}`);
                     }
                     const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
                     const today = days[now.getDay()];
                     const schedules = bancas[banca].schedules[today];
                     if (!schedules || schedules.length === 0) {
-                        console.warn(Nenhum horário para ${banca} em ${today});
+                        console.warn(`Nenhum horário para ${banca} em ${today}`);
                         return null;
                     }
 
-                    const nowTime = ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')};
+                    const nowTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
                     const nextTime = schedules.find(time => time > nowTime) || schedules[0];
                     let nextDate = new Date(now);
 
@@ -718,22 +720,22 @@
 
                     const [hours, minutes] = nextTime.split(':');
                     nextDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-                    console.log(getNextDrawTime: ${nextTime}, ${nextDate});
+                    console.log(`getNextDrawTime: ${nextTime}, ${nextDate}`);
                     return { time: nextTime, date: nextDate };
                 } catch (e) {
-                    console.error(Erro na função getNextDrawTime: ${e.message});
-                    gtag('event', 'exception', { description: getNextDrawTime: ${e.message}, fatal: false });
+                    console.error(`Erro na função getNextDrawTime: ${e.message}`);
+                    gtag('event', 'exception', { description: `getNextDrawTime: ${e.message}`, fatal: false });
                     return null;
                 }
             }
 
             function generatePalpites(banca, drawTime) {
-                console.log(generatePalpites: banca=${banca}, drawTime=${drawTime});
+                console.log(`generatePalpites: banca=${banca}, drawTime=${drawTime}`);
                 try {
-                    const key = palpites_${banca}_${drawTime};
+                    const key = `palpites_${banca}_${drawTime}`;
                     const stored = localStorage.getItem(key);
                     if (stored) {
-                        console.log(Palpites do localStorage: ${key});
+                        console.log(`Palpites do localStorage: ${key}`);
                         return JSON.parse(stored);
                     }
 
@@ -741,29 +743,29 @@
                     for (let i = 0; i < 10; i++) {
                         const milhar = generateMilhar();
                         const animal = getAnimalByMilhar(milhar);
-                        palpites.push({ milhar, animal: ${animal.emoji} ${animal.name} });
+                        palpites.push({ milhar, animal: `${animal.emoji} ${animal.name}` });
                     }
 
                     localStorage.setItem(key, JSON.stringify(palpites));
-                    console.log(Palpites gerados: ${key});
+                    console.log(`Palpites gerados: ${key}`);
                     return palpites;
                 } catch (e) {
-                    console.error(Erro na função generatePalpites: ${e.message});
-                    gtag('event', 'exception', { description: generatePalpites: ${e.message}, fatal: false });
+                    console.error(`Erro na função generatePalpites: ${e.message}`);
+                    gtag('event', 'exception', { description: `generatePalpites: ${e.message}`, fatal: false });
                     return [];
                 }
             }
 
             function shareOnWhatsApp(banca, drawTime, palpites) {
-                console.log(shareOnWhatsApp: banca=${banca}, drawTime=${drawTime});
+                console.log(`shareOnWhatsApp: banca=${banca}, drawTime=${drawTime}`);
                 try {
-                    const message = Palpites para ${banca} - ${drawTime}:\n${palpites.map(p => `${p.milhar} - ${p.animal}).join('\n')}\n\nACESSE O SITE:\nhttps://aguiaoficial.com/`;
+                    const message = `Palpites para ${banca} - ${drawTime}:\n${palpites.map(p => `${p.milhar} - ${p.animal}`).join('\n')}\n\nACESSE O SITE:\nhttps://aguiaoficial.com/`;
                     const encodedMessage = encodeURIComponent(message);
-                    window.open(https://api.whatsapp.com/send?text=${encodedMessage}, '_blank', 'noopener,noreferrer');
+                    window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank', 'noopener,noreferrer');
                     gtag('event', 'share_whatsapp', { event_category: 'Palpites', event_label: banca });
                 } catch (e) {
-                    console.error(Erro na função shareOnWhatsApp: ${e.message});
-                    gtag('event', 'exception', { description: shareOnWhatsApp: ${e.message}, fatal: false });
+                    console.error(`Erro na função shareOnWhatsApp: ${e.message}`);
+                    gtag('event', 'exception', { description: `shareOnWhatsApp: ${e.message}`, fatal: false });
                 }
             }
 
@@ -782,7 +784,7 @@
                     palpiteOutput.innerHTML = '<p class="loading">Carregando palpites...</p>';
 
                     const selectedBanca = sanitizeInput(bancaSelect.value);
-                    console.log(displayPalpites: selectedBanca=${selectedBanca});
+                    console.log(`displayPalpites: selectedBanca=${selectedBanca}`);
                     if (!selectedBanca) {
                         palpiteOutput.innerHTML = '';
                         bancaError.classList.remove('hidden');
@@ -794,14 +796,14 @@
                     gerarPalpitesBtn.disabled = false;
                     const now = new Date();
                     const nextDraw = getNextDrawTime(selectedBanca, now);
-                    console.log(displayPalpites: nextDraw=${JSON.stringify(nextDraw)});
+                    console.log(`displayPalpites: nextDraw=${JSON.stringify(nextDraw)}`);
                     if (!nextDraw) {
                         palpiteOutput.innerHTML = '<p class="error">Nenhum horário disponível para hoje.</p>';
                         return;
                     }
 
                     const palpites = generatePalpites(selectedBanca, nextDraw.time);
-                    console.log(displayPalpites: palpites=${JSON.stringify(palpites)});
+                    console.log(`displayPalpites: palpites=${JSON.stringify(palpites)}`);
                     if (palpites.length === 0) {
                         palpiteOutput.innerHTML = '<p class="error">Erro ao carregar os palpites. Tente novamente.</p>';
                         return;
@@ -811,7 +813,7 @@
                         <div>
                             <h3>${selectedBanca} - ${nextDraw.time}</h3>
                             <ul class="mt-3 list-disc pl-5">
-                                ${palpites.map(p => <li class="milhares">${p.milhar} - ${p.animal}</li>).join('')}
+                                ${palpites.map(p => `<li class="milhares">${p.milhar} - ${p.animal}</li>`).join('')}
                             </ul>
                             <button id="shareWhatsApp" class="mt-4 green">Compartilhar no WhatsApp</button>
                         </div>
@@ -826,8 +828,8 @@
                         throw new Error('Botão shareWhatsApp não encontrado');
                     }
                 } catch (e) {
-                    console.error(Erro na função displayPalpites: ${e.message});
-                    gtag('event', 'exception', { description: displayPalpites: ${e.message}, fatal: true });
+                    console.error(`Erro na função displayPalpites: ${e.message}`);
+                    gtag('event', 'exception', { description: `displayPalpites: ${e.message}`, fatal: true });
                     const palpiteOutput = document.getElementById('palpiteOutput');
                     if (palpiteOutput) {
                         palpiteOutput.innerHTML = '<p class="error">Erro ao carregar os palpites. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
@@ -846,13 +848,13 @@
                     animals.forEach(animal => {
                         const option = document.createElement('option');
                         option.value = animal.name;
-                        option.textContent = ${animal.emoji} ${animal.name};
+                        option.textContent = `${animal.emoji} ${animal.name}`;
                         select.appendChild(option);
                     });
                     console.log('populateAnimalSelect: Concluído');
                 } catch (e) {
-                    console.error(Erro na função populateAnimalSelect: ${e.message});
-                    gtag('event', 'exception', { description: populateAnimalSelect: ${e.message}, fatal: true });
+                    console.error(`Erro na função populateAnimalSelect: ${e.message}`);
+                    gtag('event', 'exception', { description: `populateAnimalSelect: ${e.message}`, fatal: true });
                     const puxadaResult = document.getElementById('puxadaResult');
                     if (puxadaResult) {
                         puxadaResult.innerHTML = '<p class="error">Erro ao carregar os animais. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
@@ -873,7 +875,7 @@
                     }
 
                     select.addEventListener('change', debounce(() => {
-                        console.log(animalSelect change: value=${select.value});
+                        console.log(`animalSelect change: value=${select.value}`);
                         const animal = sanitizeInput(select.value);
                         verPuxada.classList.toggle('hidden', !animal);
                         puxadaResult.innerHTML = '';
@@ -881,7 +883,7 @@
                     }, 300));
 
                     verPuxada.addEventListener('click', () => {
-                        console.log(verPuxada click: animal=${select.value});
+                        console.log(`verPuxada click: animal=${select.value}`);
                         const animal = sanitizeInput(select.value);
                         if (!animal) {
                             puxadaResult.innerHTML = '<p class="error">Selecione um animal para ver as puxadas.</p>';
@@ -894,15 +896,15 @@
                             <div>
                                 <h3>Puxadas para ${animal}</h3>
                                 <ul class="list-disc pl-5 mt-2">
-                                    ${pulls.length ? pulls.map(pull => <li>${animals.find(a => a.name === pull)?.emoji || ''} ${pull}</li>).join('') : '<li>Nenhuma puxada disponível.</li>'}
+                                    ${pulls.length ? pulls.map(pull => `<li>${animals.find(a => a.name === pull)?.emoji || ''} ${pull}</li>`).join('') : '<li>Nenhuma puxada disponível.</li>'}
                                 </ul>
                             </div>
                         `;
                         gtag('event', 'view_puxada', { event_category: 'Puxadas', event_label: animal });
                     });
                 } catch (e) {
-                    console.error(Erro na função handlePuxada: ${e.message});
-                    gtag('event', 'exception', { description: handlePuxada: ${e.message}, fatal: true });
+                    console.error(`Erro na função handlePuxada: ${e.message}`);
+                    gtag('event', 'exception', { description: `handlePuxada: ${e.message}`, fatal: true });
                     const puxadaResult = document.getElementById('puxadaResult');
                     if (puxadaResult) {
                         puxadaResult.innerHTML = '<p class="error">Erro ao carregar as puxadas. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
@@ -920,7 +922,7 @@
                     }
 
                     bancaSelect.addEventListener('change', debounce(() => {
-                        console.log(bancaSelect change: value=${bancaSelect.value});
+                        console.log(`bancaSelect change: value=${bancaSelect.value}`);
                         const palpiteOutput = document.getElementById('palpiteOutput');
                         const bancaError = document.getElementById('bancaError');
                         if (palpiteOutput) {
@@ -940,8 +942,8 @@
 
                     showSection('jogar');
                 } catch (e) {
-                    console.error(Erro na inicialização: ${e.message});
-                    gtag('event', 'exception', { description: DOMContentLoaded: ${e.message}, fatal: true });
+                    console.error(`Erro na inicialização: ${e.message}`);
+                    gtag('event', 'exception', { description: `DOMContentLoaded: ${e.message}`, fatal: true });
                     document.body.innerHTML = '<p class="error">Erro ao carregar a página. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
                 }
             });
@@ -949,13 +951,13 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.getRegistrations().then(registrations => {
                     for (let registration of registrations) {
-                        registration.unregister().catch(e => console.warn(Erro ao desregistrar service worker: ${e.message}));
+                        registration.unregister().catch(e => console.warn(`Erro ao desregistrar service worker: ${e.message}`));
                     }
-                }).catch(e => console.warn(Erro ao obter registros de service worker: ${e.message}));
+                }).catch(e => console.warn(`Erro ao obter registros de service worker: ${e.message}`));
             }
         } catch (e) {
-            console.error(Erro global: ${e.message});
-            gtag('event', 'exception', { description: global: ${e.message}, fatal: true });
+            console.error(`Erro global: ${e.message}`);
+            gtag('event', 'exception', { description: `global: ${e.message}`, fatal: true });
             document.body.innerHTML = '<p class="error">Erro crítico ao carregar a página. Contate o suporte: <a href="https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda" rel="noopener noreferrer">WhatsApp</a></p>';
         }
     </script>
