@@ -372,41 +372,7 @@
     </style>
 </head>
 <body>
-    <button class="button" onclick="addToHomeScreen()">Adicionar à Tela Inicial</button>
-
-    <script>
-        let deferredPrompt;
-
-        // Captura o evento de instalação do PWA (se disponível)
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-        });
-
-        function addToHomeScreen() {
-            // Se o navegador suporta PWA e o evento foi capturado
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuário aceitou adicionar à tela inicial');
-                    } else {
-                        console.log('Usuário recusou adicionar à tela inicial');
-                    }
-                    deferredPrompt = null;
-                });
-            } else {
-                // Fallback para navegadores que não suportam PWA ou desktop
-                alert('Para adicionar à tela inicial:\n' +
-                      '1. No celular: Use a opção "Adicionar à Tela Inicial" no menu do navegador.\n' +
-                      '2. No computador: Arraste a URL (bancaaguiaoficial.com) para a área de trabalho ou use a opção "Criar Atalho" no menu do navegador.');
-            }
-        }
-
-        // Detecta se o app já está instalado (opcional)
-        window.addEventListener('appinstalled', () => {
-            console.log('Aplicativo foi instalado com sucesso!');
-        });
+  
  
     <noscript>
         <p class="error">O JavaScript é necessário para usar este site. Ative-o no seu navegador ou use um navegador compatível.</p>
