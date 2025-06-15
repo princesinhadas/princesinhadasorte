@@ -1,49 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banca Águia Oficial</title>
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#004aad">
-  <link rel="icon" href="/icon-192.png">
-  <script>
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      // Impede que o prompt automático apareça
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById('add-button').style.display = 'block';
-    });
-
-    function addToHomeScreen() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('Usuário aceitou instalar o app');
-          } else {
-            console.log('Usuário recusou instalar o app');
-          }
-          deferredPrompt = null;
-        });
-      }
-    }
-  </script>
-  <style>
-    #add-button {
-      display: none;
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: #004aad;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-  </style>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <script defer async src="https://www.googletagmanager.com/gtag/js?id=G-V0N3WWWQ7V"></script>
@@ -415,8 +373,7 @@
     </style>
 </head>
 <body>
-    <h1>Bem-vindo à Banca Águia Oficial</h1>
-  <button id="add-button" onclick="addToHomeScreen()">Adicionar à Tela Inicial</button>
+    
     
  
     <noscript>
