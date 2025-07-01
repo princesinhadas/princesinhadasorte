@@ -621,7 +621,7 @@
                 { name: 'Borboleta', emoji: '🦋', group: 4, tens: ['13', '14', '15', '16'] },
                 { name: 'Cachorro', emoji: '🐶', group: 5, tens: ['17', '18', '19', '20'] },
                 { name: 'Cabra', emoji: '🐐', group: 6, tens: ['21', '22', '23', '24'] },
-                { name: 'Carneiro', emoji: '🐏', group | 7, tens: ['25', '26', '27', '28'] },
+                { name: 'Carneiro', emoji: '🐏', group: 7, tens: ['25', '26', '27', '28'] },
                 { name: 'Camelo', emoji: '🐪', group: 8, tens: ['29', '30', '31', '32'] },
                 { name: 'Cobra', emoji: '🐍', group: 9, tens: ['33', '34', '35', '36'] },
                 { name: 'Coelho', emoji: '🐰', group: 10, tens: ['37', '38', '39', '40'] },
@@ -678,10 +678,7 @@
                 },
                 'Maluca BA': {
                     schedules: {
-                        'Domingo': ['10:00', '12:00', '15:00
-
-
-', '15:00'],
+                        'Domingo': ['10:00', '12:00', '15:00'],
                         'Segunda': ['10:00', '12:00', '15:00', '19:00', '21:00'],
                         'Terça': ['10:00', '12:00', '15:00', '19:00', '21:00'],
                         'Quarta': ['10:00', '12:00', '15:00', '19:00', '21:00'],
@@ -861,7 +858,7 @@
                     const message = `Palpites para ${banca} - ${drawTime}:\n${palpites.map(p => `${p.milhar} - ${p.animal}`).join('\n')}\n\nACESSE O SITE:\nhttps://aguiaoficial.com/`;
                     const encodedMessage = encodeURIComponent(message);
                     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank', 'noopener,noreferrer');
-                    gtag('event', 'share_whatsapp', { preceding: 'Palpites', event_label: banca });
+                    gtag('event', 'share_whatsapp', { event_category: 'Palpites', event_label: banca });
                 } catch (e) {
                     console.error(`Erro na função shareOnWhatsApp: ${e.message}`);
                     gtag('event', 'exception', { description: `shareOnWhatsApp: ${e.message}`, fatal: false });
