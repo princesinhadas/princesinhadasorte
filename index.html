@@ -59,7 +59,7 @@
         #main-content {
             flex: 1;
             overflow-y: auto;
-            padding-bottom: 80px;
+            padding-bottom: 120px;
             transition: margin-right .5s;
         }
         #jogar, #palpites-container, #sobre {
@@ -165,7 +165,6 @@
             border: none;
             border-radius: 8px;
             position: fixed;
-            bottom: 8px;
             z-index: 1001;
             box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
             transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
@@ -173,10 +172,12 @@
             min-width: 220px;
         }
         .openbtn {
+            bottom: 8px;
             right: 8px;
         }
         .supportbtn {
-            right: 240px;
+            bottom: 60px;
+            right: 8px;
         }
         .openbtn:hover, .supportbtn:hover {
             background: linear-gradient(135deg, #d97706, #b45309);
@@ -414,8 +415,13 @@
                 padding: 10px 16px;
                 min-width: 180px;
             }
+            .openbtn {
+                bottom: 8px;
+                right: 8px;
+            }
             .supportbtn {
-                right: 200px;
+                bottom: 60px;
+                right: 8px;
             }
             iframe {
                 height: calc(100vh - 90px);
@@ -436,8 +442,13 @@
                 font-size: 12px;
                 padding: 8px 12px;
             }
+            .openbtn {
+                bottom: 8px;
+                right: 8px;
+            }
             .supportbtn {
-                right: 160px;
+                bottom: 50px;
+                right: 8px;
             }
         }
     </style>
@@ -610,7 +621,7 @@
                 { name: 'Borboleta', emoji: '🦋', group: 4, tens: ['13', '14', '15', '16'] },
                 { name: 'Cachorro', emoji: '🐶', group: 5, tens: ['17', '18', '19', '20'] },
                 { name: 'Cabra', emoji: '🐐', group: 6, tens: ['21', '22', '23', '24'] },
-                { name: 'Carneiro', emoji: '🐏', group: 7, tens: ['25', '26', '27', '28'] },
+                { name: 'Carneiro', emoji: '🐏', group | 7, tens: ['25', '26', '27', '28'] },
                 { name: 'Camelo', emoji: '🐪', group: 8, tens: ['29', '30', '31', '32'] },
                 { name: 'Cobra', emoji: '🐍', group: 9, tens: ['33', '34', '35', '36'] },
                 { name: 'Coelho', emoji: '🐰', group: 10, tens: ['37', '38', '39', '40'] },
@@ -667,7 +678,10 @@
                 },
                 'Maluca BA': {
                     schedules: {
-                        'Domingo': ['10:00', '12:00', '15:00'],
+                        'Domingo': ['10:00', '12:00', '15:00
+
+
+', '15:00'],
                         'Segunda': ['10:00', '12:00', '15:00', '19:00', '21:00'],
                         'Terça': ['10:00', '12:00', '15:00', '19:00', '21:00'],
                         'Quarta': ['10:00', '12:00', '15:00', '19:00', '21:00'],
@@ -847,7 +861,7 @@
                     const message = `Palpites para ${banca} - ${drawTime}:\n${palpites.map(p => `${p.milhar} - ${p.animal}`).join('\n')}\n\nACESSE O SITE:\nhttps://aguiaoficial.com/`;
                     const encodedMessage = encodeURIComponent(message);
                     window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank', 'noopener,noreferrer');
-                    gtag('event', 'share_whatsapp', { event_category: 'Palpites', event_label: banca });
+                    gtag('event', 'share_whatsapp', { preceding: 'Palpites', event_label: banca });
                 } catch (e) {
                     console.error(`Erro na função shareOnWhatsApp: ${e.message}`);
                     gtag('event', 'exception', { description: `shareOnWhatsApp: ${e.message}`, fatal: false });
