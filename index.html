@@ -156,24 +156,31 @@
             transform: none;
         }
         .openbtn {
-            font-size: 20px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
-            padding: 8px 12px;
+            padding: 10px 16px;
             border: none;
             border-radius: 8px;
             position: fixed;
-            top: 8px;
-            left: 8px;
+            bottom: 8px;
+            right: 8px;
             z-index: 1001;
             box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
             transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            min-width: 200px;
         }
         .openbtn:hover {
             background: linear-gradient(135deg, #d97706, #b45309);
             box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
             transform: translateY(-2px);
+        }
+        .openbtn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
         }
         select, input, button:not(.sidebar button, .openbtn, footer button) {
             padding: 12px;
@@ -397,6 +404,11 @@
                 font-size: 11px;
                 padding: 8px 10px;
             }
+            .openbtn {
+                font-size: 12px;
+                padding: 8px 12px;
+                min-width: 160px;
+            }
             iframe {
                 height: calc(100vh - 90px);
             }
@@ -451,7 +463,7 @@
         </button>
     </div>
 
-    <button class="openbtn" onclick="openNav()" aria-label="Abrir menu">☰</button>
+    <button class="openbtn" onclick="openNav()" aria-label="Abrir menu">Clique aqui e acesse palpites e informações</button>
 
     <header>
     </header>
@@ -519,7 +531,7 @@
                             <tr><td>Grupo</td><td>20,00</td></tr>
                             <tr><td>Dezena</td><td>80,00</td></tr>
                             <tr><td>Centena</td><td>800,00</td></tr>
-                            <tr><td>Milhar</td><td>8.000,00</td></ Neon
+                            <tr><td>Milhar</td><td>8.000,00</td></tr>
                             <tr><td>Duque GP</td><td>180,00</td></tr>
                             <tr><td>Terno GP</td><td>1.500,00</td></tr>
                             <tr><td>Quadra GP</td><td>1.000,00</td></tr>
@@ -621,7 +633,7 @@
                         'Quarta': ['09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00'],
                         'Quinta': ['09:00', '11:00', '14:00', '16:00', '18:00', '21:00'],
                         'Sexta': ['09:00', '11:00', '14:00', '16:00', '18:00', '21:00'],
-                        'Sábado': ['09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00']
+                        'Sábado': ['Cfgm09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00']
                     }
                 },
                 'Nacional': {
