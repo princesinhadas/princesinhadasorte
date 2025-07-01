@@ -60,6 +60,7 @@
             flex: 1;
             overflow-y: auto;
             padding-bottom: 60px;
+            transition: margin-left .5s;
         }
         #jogar, #palpites-container, #sobre {
             width: 100%;
@@ -94,23 +95,21 @@
             display: block;
             min-height: 600px;
         }
-        footer {
-            background: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            border-top: 1px solid #e0e0e0;
+        /* Estilo do menu lateral */
+        .sidebar {
+            height: 100%;
+            width: 0;
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            gap: 8px;
-            max-width: 100%;
+            top: 0;
+            left: 0;
+            background: #ffffff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
-        footer button {
+        .sidebar button {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             border: none;
             font-size: 13px;
@@ -124,21 +123,59 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            flex: 1;
+            width: 90%;
+            margin: 8px auto;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
         }
-        footer button:hover {
+        .sidebar button:hover {
             background: linear-gradient(135deg, #d97706, #b45309);
             box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
             transform: translateY(-2px);
         }
-        footer button:active {
+        .sidebar button:active {
             transform: scale(0.95);
             box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
         }
-        select, input, button:not(footer button) {
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #374151;
+            cursor: pointer;
+            background: none;
+            box-shadow: none;
+            width: auto;
+            margin: 0;
+            padding: 10px;
+        }
+        .sidebar .closebtn:hover {
+            color: #f59e0b;
+            transform: none;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            z-index: 1001;
+            box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .openbtn:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
+            transform: translateY(-2px);
+        }
+        select, input, button:not(.sidebar button, .openbtn, footer button) {
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #d1d5db;
@@ -157,12 +194,12 @@
         input[type="text"], input[type="tel"], input[type="number"] {
             appearance: none;
         }
-        select:focus, input:focus, button:not(footer button):focus {
+        select:focus, input:focus, button:not(.sidebar button, .openbtn, footer button):focus {
             border-color: #f59e0b;
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
             outline: none;
         }
-        button:not(footer button) {
+        button:not(.sidebar button, .openbtn, footer button) {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #fff;
             font-weight: 600;
@@ -175,12 +212,12 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        button:not(footer button):hover {
+        button:not(.sidebar button, .openbtn, footer button):hover {
             background: linear-gradient(135deg, #d97706, #b45309);
             box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
             transform: translateY(-2px);
         }
-        button:not(footer button):active {
+        button:not(.sidebar button, .openbtn, footer button):active {
             transform: scale(0.95);
             box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
         }
@@ -205,8 +242,7 @@
         button:disabled {
             background: #d1d5db;
             box-shadow: none;
-            cursor: not-comment
-allowed;
+            cursor: not-allowed;
             transform: none;
             color: #6b7280;
         }
@@ -241,10 +277,6 @@ allowed;
             margin: 0 auto 12px;
             max-width: 100px;
             height: auto;
-        }
-        .button-group {
-            display: flex;
-            gap: 8px;
         }
         .milhares {
             margin-bottom: 8px;
@@ -357,20 +389,13 @@ allowed;
             h3 {
                 font-size: 15px;
             }
-            select, input, button:not(footer button) {
+            select, input, button:not(.sidebar button, .openbtn, footer button) {
                 font-size: 13px;
                 padding: 10px;
             }
-            footer {
-                padding: 8px;
-                height: 56px;
-                gap: 6px;
-            }
-            footer button {
+            .sidebar button {
                 font-size: 11px;
                 padding: 8px 10px;
-                min-width: 50px;
-                flex-shrink: 1;
             }
             iframe {
                 height: calc(100vh - 90px);
@@ -391,6 +416,43 @@ allowed;
     <noscript>
         <p class="error">O JavaScript é necessário para usar este site. Ative-o no seu navegador ou use um navegador compatível.</p>
     </noscript>
+
+    <div id="mySidebar" class="sidebar">
+        <span class="closebtn" onclick="closeNav()" aria-label="Fechar menu">×</span>
+        <button onclick="openWindow('https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda', '_blank')" aria-label="Acessar suporte via WhatsApp">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.6 2.4A8 8 0 0 0 0 8c0 1.8.6 3.5 1.7 4.9L1 15l2.1-.7A8 8 0 0 0 8 16c4.4 0 8-3.6 8-8a8 8 0 0 0-2.4-5.6zM8 14.5a6.5 6.5 0 0 1-3.7-1.1l-.3-.1-.7.2-1.2.4.4-1.2.2-.7-.1-.3A6.5 6.5 0 0 1 8 1.5a6.5 6.5 0 0 1 6.5 6.5A6.5 6.5 0 0 1 8 14.5zm2.3-4.7c-.1 0-.2 0-.3-.1-.2-.1-1-.5-1.2-.6-.2-.1-.4-.2-.5-.3-.2-.1-.3-.2-.5-.4-.1-.2-.2-.4-.3-.6-.1-.2-.1-.4-.2-.5 0-.1-.1-.2-.2-.3-.1-.1-.2-.2-.3-.3-.1-.1-.2-.2-.1-.3.1-.1.2-.3.3-.4.1-.1.2-.2.3-.3.1-.1.1-.2.1-.3s0-.2-.1-.3c-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.4-.2H6.8c-.2 0-.4 0-.5.1-.1 0-.2.1-.3.2-.1.1-.2.2-.3.3-.1.2-.2.4-.2.6 0 .2 0 .4.1.6.1.2.2.4.3.6.1.2.3.4.5.6.2.2.4.4.7.6.3.2.6.4 1 .5.3.1.7.2 1.1.2h.3c.2 0 .4-.1.6-.2.2-.1.3-.2.4-.4.1-.2.1-.4.1-.6 0-.2-.1-.3-.2-.4z"/>
+            </svg>
+            Suporte
+        </button>
+        <button onclick="openWindow('https://app.aguiaoficial.com/pr/2FE1WPn7', '_blank')" aria-label="Acessar cassino">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 4a1 1 0 0 0-1 1v3.6l-2.3-2.3a1 1 0 0 0-1.4 1.4l3 3a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0-1.4-1.4L9 8.6V5a1 1 0 0 0-1-1z"/>
+            </svg>
+            Cassino
+        </button>
+        <button onclick="showSection('jogar'); closeNav();" aria-label="Acessar seção Jogar">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM6 5l4 3-4 3V5z"/>
+            </svg>
+            Jogar
+        </button>
+        <button onclick="showSection('palpites'); closeNav();" aria-label="Acessar seção Palpites">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 4a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V5a1 1 0 0 0-1-1z"/>
+            </svg>
+            Palpites
+        </button>
+        <button onclick="showSection('sobre'); closeNav();" aria-label="Acessar seção Sobre">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 11.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1 0-1.5h.5a.75.75 0 0 1 .75.75zm0-2a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1 0-1.5h.5a.75.75 0 0 1 .75.75zm.75-3.25a.75.75 0 0 1-1.5 0 .25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5a1.75 1.75 0 0 1 1.75 1.75z"/>
+            </svg>
+            Saiba Mais
+        </button>
+    </div>
+
+    <button class="openbtn" onclick="openNav()" aria-label="Abrir menu">☰</button>
+
     <header>
     </header>
 
@@ -457,7 +519,7 @@ allowed;
                             <tr><td>Grupo</td><td>20,00</td></tr>
                             <tr><td>Dezena</td><td>80,00</td></tr>
                             <tr><td>Centena</td><td>800,00</td></tr>
-                            <tr><td>Milhar</td><td>8.000,00</td></tr>
+                            <tr><td>Milhar</td><td>8.000,00</td></ Neon
                             <tr><td>Duque GP</td><td>180,00</td></tr>
                             <tr><td>Terno GP</td><td>1.500,00</td></tr>
                             <tr><td>Quadra GP</td><td>1.000,00</td></tr>
@@ -483,39 +545,6 @@ allowed;
         </div>
     </div>
 
-    <footer role="navigation" aria-label="Navegação principal">
-        <button onclick="openWindow('https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda', '_blank')" aria-label="Acessar suporte via WhatsApp">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M13.6 2.4A8 8 0 0 0 0 8c0 1.8.6 3.5 1.7 4.9L1 15l2.1-.7A8 8 0 0 0 8 16c4.4 0 8-3.6 8-8a8 8 0 0 0-2.4-5.6zM8 14.5a6.5 6.5 0 0 1-3.7-1.1l-.3-.1-.7.2-1.2.4.4-1.2.2-.7-.1-.3A6.5 6.5 0 0 1 8 1.5a6.5 6.5 0 0 1 6.5 6.5A6.5 6.5 0 0 1 8 14.5zm2.3-4.7c-.1 0-.2 0-.3-.1-.2-.1-1-.5-1.2-.6-.2-.1-.4-.2-.5-.3-.2-.1-.3-.2-.5-.4-.1-.2-.2-.4-.3-.6-.1-.2-.1-.4-.2-.5 0-.1-.1-.2-.2-.3-.1-.1-.2-.2-.3-.3-.1-.1-.2-.2-.1-.3.1-.1.2-.3.3-.4.1-.1.2-.2.3-.3.1-.1.1-.2.1-.3s0-.2-.1-.3c-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.4-.2H6.8c-.2 0-.4 0-.5.1-.1 0-.2.1-.3.2-.1.1-.2.2-.3.3-.1.2-.2.4-.2.6 0 .2 0 .4.1.6.1.2.2.4.3.6.1.2.3.4.5.6.2.2.4.4.7.6.3.2.6.4 1 .5.3.1.7.2 1.1.2h.3c.2 0 .4-.1.6-.2.2-.1.3-.2.4-.4.1-.2.1-.4.1-.6 0-.2-.1-.3-.2-.4z"/>
-            </svg>
-            Suporte
-        </button>
-        <button onclick="openWindow('https://app.aguiaoficial.com/pr/2FE1WPn7', '_blank')" aria-label="Acessar cassino">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 4a1 1 0 0 0-1 1v3.6l-2.3-2.3a1 1 0 0 0-1.4 1.4l3 3a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0-1.4-1.4L9 8.6V5a1 1 0 0 0-1-1z"/>
-            </svg>
-            Cassino
-        </button>
-        <button onclick="showSection('jogar')" aria-label="Acessar seção Jogar">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM6 5l4 3-4 3V5z"/>
-            </svg>
-            Jogar
-        </button>
-        <button onclick="showSection('palpites')" aria-label="Acessar seção Palpites">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 4a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V5a1 1 0 0 0-1-1z"/>
-            </svg>
-            Palpites
-        </button>
-        <button onclick="showSection('sobre')" aria-label="Acessar seção Sobre">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 11.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1 0-1.5h.5a.75.75 0 0 1 .75.75zm0-2a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1 0-1.5h.5a.75.75 0 0 1 .75.75zm.75-3.25a.75.75 0 0 1-1.5 0 .25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5a1.75 1.75 0 0 1 1.75 1.75z"/>
-            </svg>
-            SAIBA MAIS
-        </button>
-    </footer>
-
     <script>
         function debounce(func, delay) {
             let timeout;
@@ -531,6 +560,16 @@ allowed;
 
         function openWindow(url, target) {
             window.open(url, target, 'noopener,noreferrer');
+        }
+
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main-content").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main-content").style.marginLeft = "0";
         }
 
         try {
