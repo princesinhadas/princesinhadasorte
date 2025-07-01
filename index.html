@@ -59,8 +59,8 @@
         #main-content {
             flex: 1;
             overflow-y: auto;
-            padding-bottom: 60px;
-            transition: margin-left .5s;
+            padding-bottom: 80px;
+            transition: margin-right .5s;
         }
         #jogar, #palpites-container, #sobre {
             width: 100%;
@@ -101,22 +101,22 @@
             width: 0;
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0;
             background: #ffffff;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
-            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+            box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
         .sidebar button {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             border: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             color: #ffffff;
             cursor: pointer;
-            padding: 10px 12px;
+            padding: 12px 16px;
             border-radius: 10px;
             transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
             display: flex;
@@ -141,7 +141,7 @@
         .sidebar .closebtn {
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 10px;
             font-size: 24px;
             color: #374151;
             cursor: pointer;
@@ -155,34 +155,39 @@
             color: #f59e0b;
             transform: none;
         }
-        .openbtn {
-            font-size: 14px;
+        .openbtn, .supportbtn {
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white;
-            padding: 10px 16px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             position: fixed;
             bottom: 8px;
-            right: 8px;
             z-index: 1001;
             box-shadow: 0 3px 8px rgba(245, 158, 11, 0.3);
             transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
             text-align: center;
-            min-width: 200px;
+            min-width: 220px;
         }
-        .openbtn:hover {
+        .openbtn {
+            right: 8px;
+        }
+        .supportbtn {
+            right: 240px;
+        }
+        .openbtn:hover, .supportbtn:hover {
             background: linear-gradient(135deg, #d97706, #b45309);
             box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
             transform: translateY(-2px);
         }
-        .openbtn:active {
+        .openbtn:active, .supportbtn:active {
             transform: scale(0.95);
             box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
         }
-        select, input, button:not(.sidebar button, .openbtn, footer button) {
+        select, input, button:not(.sidebar button, .openbtn, .supportbtn, footer button) {
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #d1d5db;
@@ -201,12 +206,12 @@
         input[type="text"], input[type="tel"], input[type="number"] {
             appearance: none;
         }
-        select:focus, input:focus, button:not(.sidebar button, .openbtn, footer button):focus {
+        select:focus, input:focus, button:not(.sidebar button, .openbtn, .supportbtn, footer button):focus {
             border-color: #f59e0b;
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
             outline: none;
         }
-        button:not(.sidebar button, .openbtn, footer button) {
+        button:not(.sidebar button, .openbtn, .supportbtn, footer button) {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #fff;
             font-weight: 600;
@@ -219,12 +224,12 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        button:not(.sidebar button, .openbtn, footer button):hover {
+        button:not(.sidebar button, .openbtn, .supportbtn, footer button):hover {
             background: linear-gradient(135deg, #d97706, #b45309);
             box-shadow: 0 5px 12px rgba(245, 158, 11, 0.5);
             transform: translateY(-2px);
         }
-        button:not(.sidebar button, .openbtn, footer button):active {
+        button:not(.sidebar button, .openbtn, .supportbtn, footer button):active {
             transform: scale(0.95);
             box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
         }
@@ -396,18 +401,21 @@
             h3 {
                 font-size: 15px;
             }
-            select, input, button:not(.sidebar button, .openbtn, footer button) {
+            select, input, button:not(.sidebar button, .openbtn, .supportbtn, footer button) {
                 font-size: 13px;
                 padding: 10px;
             }
             .sidebar button {
-                font-size: 11px;
-                padding: 8px 10px;
-            }
-            .openbtn {
                 font-size: 12px;
-                padding: 8px 12px;
-                min-width: 160px;
+                padding: 10px 12px;
+            }
+            .openbtn, .supportbtn {
+                font-size: 14px;
+                padding: 10px 16px;
+                min-width: 180px;
+            }
+            .supportbtn {
+                right: 200px;
             }
             iframe {
                 height: calc(100vh - 90px);
@@ -422,6 +430,16 @@
                 flex-direction: column;
             }
         }
+        @media (max-width: 480px) {
+            .openbtn, .supportbtn {
+                min-width: 140px;
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            .supportbtn {
+                right: 160px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -431,12 +449,6 @@
 
     <div id="mySidebar" class="sidebar">
         <span class="closebtn" onclick="closeNav()" aria-label="Fechar menu">×</span>
-        <button onclick="openWindow('https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda', '_blank')" aria-label="Acessar suporte via WhatsApp">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M13.6 2.4A8 8 0 0 0 0 8c0 1.8.6 3.5 1.7 4.9L1 15l2.1-.7A8 8 0 0 0 8 16c4.4 0 8-3.6 8-8a8 8 0 0 0-2.4-5.6zM8 14.5a6.5 6.5 0 0 1-3.7-1.1l-.3-.1-.7.2-1.2.4.4-1.2.2-.7-.1-.3A6.5 6.5 0 0 1 8 1.5a6.5 6.5 0 0 1 6.5 6.5A6.5 6.5 0 0 1 8 14.5zm2.3-4.7c-.1 0-.2 0-.3-.1-.2-.1-1-.5-1.2-.6-.2-.1-.4-.2-.5-.3-.2-.1-.3-.2-.5-.4-.1-.2-.2-.4-.3-.6-.1-.2-.1-.4-.2-.5 0-.1-.1-.2-.2-.3-.1-.1-.2-.2-.3-.3-.1-.1-.2-.2-.1-.3.1-.1.2-.3.3-.4.1-.1.2-.2.3-.3.1-.1.1-.2.1-.3s0-.2-.1-.3c-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.4-.2H6.8c-.2 0-.4 0-.5.1-.1 0-.2.1-.3.2-.1.1-.2.2-.3.3-.1.2-.2.4-.2.6 0 .2 0 .4.1.6.1.2.2.4.3.6.1.2.3.4.5.6.2.2.4.4.7.6.3.2.6.4 1 .5.3.1.7.2 1.1.2h.3c.2 0 .4-.1.6-.2.2-.1.3-.2.4-.4.1-.2.1-.4.1-.6 0-.2-.1-.3-.2-.4z"/>
-            </svg>
-            Suporte
-        </button>
         <button onclick="openWindow('https://app.aguiaoficial.com/pr/2FE1WPn7', '_blank')" aria-label="Acessar cassino">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8 4a1 1 0 0 0-1 1v3.6l-2.3-2.3a1 1 0 0 0-1.4 1.4l3 3a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0-1.4-1.4L9 8.6V5a1 1 0 0 0-1-1z"/>
@@ -464,6 +476,12 @@
     </div>
 
     <button class="openbtn" onclick="openNav()" aria-label="Abrir menu">Clique aqui e acesse palpites e informações</button>
+    <button class="supportbtn" onclick="openWindow('https://api.whatsapp.com/send?phone=+5583982024096&text=Olá,%20preciso%20de%20ajuda', '_blank')" aria-label="Acessar suporte via WhatsApp">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.6 2.4A8 8 0 0 0 0 8c0 1.8.6 3.5 1.7 4.9L1 15l2.1-.7A8 8 0 0 0 8 16c4.4 0 8-3.6 8-8a8 8 0 0 0-2.4-5.6zM8 14.5a6.5 6.5 0 0 1-3.7-1.1l-.3-.1-.7.2-1.2.4.4-1.2.2-.7-.1-.3A6.5 6.5 0 0 1 8 1.5a6.5 6.5 0 0 1 6.5 6.5A6.5 6.5 0 0 1 8 14.5zm2.3-4.7c-.1 0-.2 0-.3-.1-.2-.1-1-.5-1.2-.6-.2-.1-.4-.2-.5-.3-.2-.1-.3-.2-.5-.4-.1-.2-.2-.4-.3-.6-.1-.2-.1-.4-.2-.5 0-.1-.1-.2-.2-.3-.1-.1-.2-.2-.3-.3-.1-.1-.2-.2-.1-.3.1-.1.2-.3.3-.4.1-.1.2-.2.3-.3.1-.1.1-.2.1-.3s0-.2-.1-.3c-.1-.1-.2-.3-.3-.4-.1-.1-.2-.2-.4-.2H6.8c-.2 0-.4 0-.5.1-.1 0-.2.1-.3.2-.1.1-.2.2-.3.3-.1.2-.2.4-.2.6 0 .2 0 .4.1.6.1.2.2.4.3.6.1.2.3.4.5.6.2.2.4.4.7.6.3.2.6.4 1 .5.3.1.7.2 1.1.2h.3c.2 0 .4-.1.6-.2.2-.1.3-.2.4-.4.1-.2.1-.4.1-.6 0-.2-.1-.3-.2-.4z"/>
+        </svg>
+        Suporte
+    </button>
 
     <header>
     </header>
@@ -576,12 +594,12 @@
 
         function openNav() {
             document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main-content").style.marginLeft = "250px";
+            document.getElementById("main-content").style.marginRight = "250px";
         }
 
         function closeNav() {
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main-content").style.marginLeft = "0";
+            document.getElementById("main-content").style.marginRight = "0";
         }
 
         try {
@@ -633,7 +651,7 @@
                         'Quarta': ['09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00'],
                         'Quinta': ['09:00', '11:00', '14:00', '16:00', '18:00', '21:00'],
                         'Sexta': ['09:00', '11:00', '14:00', '16:00', '18:00', '21:00'],
-                        'Sábado': ['Cfgm09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00']
+                        'Sábado': ['09:00', '11:00', '14:00', '16:00', '18:00', '19:00', '21:00']
                     }
                 },
                 'Nacional': {
